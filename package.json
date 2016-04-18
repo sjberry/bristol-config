@@ -1,6 +1,6 @@
 {
   "name": "bristol-config",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Integration for Bristol logging and node-config configuration.",
   "author": "Steven Berry <steven@sberry.me> (http://www.sberry.me/)",
   "license": "MIT",

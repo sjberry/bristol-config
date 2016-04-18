@@ -21,25 +21,39 @@ function configure(config) {
 			else {
 				if (item.type.hasOwnProperty('module')) {
 					mod = require(item.type.module);
-					inst = (item.type.constructor !== false) ? new mod(item.type.options) : mod;
-					target = logger.addTarget(inst);
+
+					if (item.type.constructor !== false) {
+						inst = new mod(item.type.options);
+						target = logger.addTarget(inst);
+					}
+					else {
+						target = logger.addTarget(mod, item.type.options);
+					}
 				}
 				else {
 					target = logger.addTarget(item.type.name, item.type.options);
 				}
 			}
 
-			if (typeof item.formatter === 'string') {
-				target.withFormatter(item.formatter);
-			}
-			else {
-				if (item.formatter.hasOwnProperty('module')) {
-					mod = require(item.formatter.module);
-					inst = (item.formatter.constructor !== false) ? new mod(item.formatter.options) : mod;
-					target.withFormatter(inst);
+			if (item.formatter) {
+				if (typeof item.formatter === 'string') {
+					target.withFormatter(item.formatter);
 				}
 				else {
-					target.withFormatter(item.formatter.name, item.formatter.options);
+					if (item.formatter.hasOwnProperty('module')) {
+						mod = require(item.formatter.module);
+
+						if (item.formatter.constructor !== false) {
+							inst = new mod(item.formatter.options);
+							target.withFormatter(inst);
+						}
+						else {
+							target.withFormatter(inst, item.formatter.options);
+						}
+					}
+					else {
+						target.withFormatter(item.formatter.name, item.formatter.options);
+					}
 				}
 			}
 
