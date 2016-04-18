@@ -1,0 +1,15 @@
+{
+  "name": "bristol-config",
+  "version": "0.1.0",
+  "description": "Integration for Bristol logging and node-config configuration.",
+  "author": "Steven Berry <steven@sberry.me> (http://www.sberry.me/)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sjberry/bristol-config.git"
+  },
+  "main": "main",
+  "peerDependencies": {
+    "bristol": "0.3.x"
+  }
+}
